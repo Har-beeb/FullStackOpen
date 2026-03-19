@@ -1,0 +1,70 @@
+### get all blogs
+GET http://localhost:3003/api/blogs
+
+### create user account for harbeeb
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+    "username": "harbeeb",
+    "name": "Harbeebullah I.O",
+    "password": "hax12345"
+}
+
+### create user account for haxdev
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+    "username": "haxdev",
+    "name": "Issa Habeeb O.",
+    "password": "hax12345"
+}
+
+### Get the token for the first user (harbeeb)
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "username": "harbeeb",
+    "password": "hax12345"
+}
+
+### Get the token for the first user (haxdev)
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "username": "haxdev",
+    "password": "hax12345"
+}
+
+### create a new blog post with the token for harbeeb
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer (token for harbeeb)
+
+{
+    "title": "Web Development Basics",
+    "author": "Harbeebullah I.O",
+    "url": "https://www.codewithharbeeb.com/web-development-basics",
+    "likes": 0
+}
+
+### create a new blog post with the token for haxdev
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer (token for haxdev)
+{
+    "title": "Advanced Web Development",
+    "author": "Harbeebullah I.O",
+    "url": "https://www.codewithharbeeb.com/advanced-web-development",
+    "likes": 0
+}
+
+### to delete a blog, post with the token for harbeeb or haxdev. 
+### replace {id of the blog post to be deleted} with the actual id of the blog post you want to delete and {token for harbeeb or haxdev} with the actual token you received from the login endpoint.
+### Each token can only delete the blog post that was created by the user associated with that token. For example, if you use the token for harbeeb, you can only delete the blog post created by harbeeb, and if you use the token for haxdev, you can only delete the blog post created by haxdev.
+### it also expires after some time, so make sure to use the token before it expires or you will need to log in again to get a new token.
+DELETE http://localhost:3003/api/blogs/{id of the blog post to be deleted}
+Authorization: Bearer {token for harbeeb or haxdev}
